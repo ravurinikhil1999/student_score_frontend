@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+Doctello
+{% endblock %}
+{% block extra_style %}
+<!-- <link rel="stylesheet" href="{% static 'css/home.css'%}"> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css">
+{% endblock %}
+{% block content %}
+<div class="top">
+    <div class="leftcontent">
+        <span class="textLeftTop">Know your Score <span class="specialTextOnline">ONLINE</span></span><br>
+        <span><span class="textLeftTopDown">... exam score reader for anytime</span></span>
+    </div>
+    <div class="rightimage">
+        <img class="image" src="{% static 'images/detanalysis.png'%}" alt="doctor">
+    </div>
+</div>
+
+
+
+{% endblock %}

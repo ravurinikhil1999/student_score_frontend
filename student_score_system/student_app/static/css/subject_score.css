@@ -1,0 +1,55 @@
+.filterable {
+    margin-top: 15px;
+}
+.filterable .panel-heading .pull-right {
+    margin-top: -20px;
+}
+.filterable .filters input[disabled] {
+    background-color: transparent;
+    border: none;
+    cursor: auto;
+    box-shadow: none;
+    padding: 0;
+    height: auto;
+}
+.filterable .filters input[disabled]::-webkit-input-placeholder {
+    color: #fff;
+}
+.filterable .filters input[disabled]::-moz-placeholder {
+    color: #fff;
+}
+.filterable .filters input[disabled]:-ms-input-placeholder {
+    color: #fff;
+}
+
+table
+{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    min-width: 800px;
+    overflow-x: scroll;
+}
+
+td
+{
+    min-width: 250px;
+}
+
+.thead
+{
+    color: #fff;
+}
+
+.scores
+{
+    margin: auto;
+}
+
+/* @media screen and (max-width: 1100px)
+{
+    .table
+    {
+        left: 5px;
+        width: 100%;
+        overflow-x: scroll;
+    }
+} */

@@ -1,0 +1,134 @@
+{% extends "admin_base.html" %}
+{% load static %}
+{% block title %}
+Add Subject
+{% endblock %}
+{% block extra_style %}
+<style>
+	table {
+		margin-top: 50px;
+	}
+
+	.anchor {
+		color: blue;
+		border-bottom: 1px solid blue;
+	}
+
+	.addbutton {
+		float: right;
+		border: none;
+		height: 40px;
+		width: 100px;
+		cursor: pointer;
+        margin-top: 30px;
+	}
+
+	.jumbotron {
+		margin-top: 40px;
+	}
+
+    thead
+    {
+        height: 70px;
+    }
+
+    table
+    {
+        height: 70px;
+        text-align: center;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<div class="container">
+	<div>
+		<div>
+			<div>
+				<button type="button" style="margin-top: 70px;" class="addbutton btn btn-primary" data-toggle="modal" data-target="#reviewModal"><i
+						class="fa fa-plus-circle" aria-hidden="true"></i> add</button>
+			</div>
+			<div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="reviewModalLabel">Add Subject
+							</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form action="" method="POST">
+								{% csrf_token %}
+								<div class="main">
+									<div class="form-group">
+										<select class="form-select form-control" name="branch" aria-label="branch select">
+											<option value="" selected>Select a branch</option>
+											{% for branch in branches %}
+											<option value="{{branch.name}}">{{branch.name}}</option>
+											{% endfor %}
+										</select>
+									</div>
+									<div class="form-group">
+										<input type="text" name="subject" class="form-control" placeholder="Subject Name">
+									</div>
+									<button class="btn btn-primary" name="addapprover" type="submit">Submit</button>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		
+		{% if error %}
+		<div class="alert alert-danger alert-dismissible">
+			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			{{error}}
+		</div>
+		{% endif %}
+		{% if message %}
+		<div class="alert alert-success alert-dismissible">
+			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			{{message}}
+		</div>
+		{% endif %}
+		{% if subjects %}
+
+		<div class="table-responsive">
+			<table class="table table-striped bg-white table-bordered">
+				<thead class="table-dark">
+					<tr>
+						<th scope="col">S.No</th>
+						<th scope="col">Subject Name</th>
+						<th scope="col">Branch Name</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for subject in subjects %}
+					<tr>
+						<th scope="row">{{ forloop.counter }}</th>
+                        <td>{{subject.name}}</td>
+                        <td>{{subject.branch}}</td>
+					</tr>
+					{% endfor %}
+                    
+				</tbody>
+			</table>
+		</div>
+
+		{% else %}
+		
+		<div class="jumbotron" style="width: 100%;padding: 25px;margin-bottom: 25px">
+			<p class="lead">No <b>Subjects</b> has been Added</p>
+		</div>
+		{% endif %}
+		
+	</div>
+</div>
+{% endblock %}

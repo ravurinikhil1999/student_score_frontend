@@ -1,0 +1,11 @@
+POST  http://localhost:3000/
+
+Content-Type: application/json; charset=UTF-8
+
+{
+    "id": 190031274,
+    "username": "imran",
+    "email":"imran",
+    "branch": "CSE",
+    "password": "imran"
+}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+Registration
+{% endblock %}
+{% block extra_style %}
+<link rel="stylesheet" href="{% static 'css/register.css'%}">
+{% endblock %}
+{% block content %}
+<section id="register" class="section-100 bg-white">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 col-sm-6">
+				<div class="card" style="width: 18rem;">
+					<img class="card-img-top" src="{% static 'images/student.png' %}" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">Student</h5>
+						<p class="card-text">In this phase, you will be joined in the branch and there you can see your
+							score of the exams.</p>
+						<a href="{% url 'studentReg' %}" class="btn btn-primary">Register</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-sm-6">
+				<div class="card" style="width: 18rem;">
+					<img class="card-img-top" src="{% static 'images/faculty.png'%}" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">Faculty</h5>
+						<p class="card-text">After Registration waits upto the Admin give access. In this phase you provide scores for the students.</p>
+						<a href="{% url 'facultyReg' %}" class="btn btn-primary">Register</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

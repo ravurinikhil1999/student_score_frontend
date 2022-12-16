@@ -1,0 +1,28 @@
+.card-title
+{
+    text-align: center;
+    font-weight: bolder;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.a 
+{
+    text-decoration: none;
+}
+
+.sub
+{
+    margin-bottom: 50px;
+} 
+
+.card
+{
+    border-radius: 10px;
+}
+
+.subjectlist
+{
+    margin: 50px 0px;
+}

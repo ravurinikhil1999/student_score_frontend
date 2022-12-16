@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+	faculty Registration
+{% endblock %}
+{% block extra_style %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/signupstyle.css'%}">
+{% endblock %}
+{% block content %} 
+	<section class="body">
+		<div class="container">
+			{% if error %}
+			<div class="alert alert-danger" role="alert">
+				{{error}}
+			</div>
+			{% endif %}
+			<div class="container">
+				<form class="signupform" action="" method="post">
+                    {% csrf_token %}
+					<div class="userlogo">
+						<i class="fa fa-user-circle" style="font-size: 60px;" aria-hidden="true"></i>
+					</div>
+					<h3 class="heading">Faculty Register</h3>
+					<div class="main">
+						<div class="form-group">
+							<input type="number" name="id" class="form-control" placeholder="Faculty Id number" required />
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control" name="username" placeholder="Username"  required />
+						</div>
+						<div class="form-group">
+                            <input type="email" class="form-control" name="email" placeholder="email"   required />
+                        </div>
+						<!-- <div class="form-group">
+							<input type="tel" class="form-control" placeholder="Mobile Number" required />
+						</div> -->
+                        <div class="form-group">
+                            <select class="form-select form-control" name="branch" aria-label="branch select">
+								<option value="" selected>Select a branch</option>
+								{% for branch in branches %}
+								<option value="{{branch.name}}">{{branch.name}}</option>
+								{% endfor %}
+                            </select>
+                        </div>
+						<!-- <div class="form-group">
+							<textarea placeholder='Address ...' class="form-control" rows="3"  required></textarea>
+						</div> -->
+						<div class="form-group">
+							<input type="password" placeholder="password" name="password" class="form-control"  required />
+						</div>
+						<button class="btn btn-primary" type="submit" >Register</button>
+                        <br>
+						<p style="display: inline-flex;">
+							<p>Already have an account&nbsp;&nbsp;</p><a href="{% url 'login' %}">login</a>
+						</p>
+					</div>
+				</form>
+		</div>
+	</section>
+{% endblock %}

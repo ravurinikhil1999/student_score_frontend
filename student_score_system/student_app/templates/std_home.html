@@ -1,0 +1,35 @@
+{% extends "std_base.html" %}
+{% load static %}
+{% block title %}
+Student Home
+{% endblock %}
+{% block extra_style %}
+<link rel="stylesheet" href="{% static 'css/subject_list.css'%}">
+{% endblock %}
+{% block content %}
+<section class="subjectlist" class="section-100">
+	{% if subjects %}
+	<div class="container">
+		<div class="row">
+			{% for subject in subjects %}
+			<div class="col-lg-4 col-sm-6 sub">
+				<a  href="{% url 'sub_score' subject.name 'sample' %}">
+					<div class="card h-100" style="width: 18rem;">
+						<div class="card-body">
+							<h5 class="card-title">{{subject.name}}</h5>
+						</div>
+					</div>
+				</a>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+	{% else %}
+	<div class="container">
+		<div class="jumbotron" style="width: 100%;margin-top: 50px">
+			<p class="lead"><b>No Subjects listed for your Branch. Wait for the Admin to add teh Subjects in your Branch.</b></p>
+		</div>
+	</div>
+	{% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends "admin_base.html" %}
+{% load static %}
+{% block title %}
+New Faculty
+{% endblock %}
+{% block extra_style %}
+<style>
+	table {
+		margin-top: 70px;
+        border: 2px solid #000;
+	}
+
+	.jumbotron {
+		margin-top: 40px;
+	}
+</style>
+{% endblock %}
+{% block content %}
+<div class="container">
+	<div>
+		
+		{% if message %}
+		<div class="alert alert-success alert-dismissible">
+			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			{{message}}
+		</div>
+		{% endif %}
+		{% if error %}
+		<div class="alert alert-danger alert-dismissible">
+			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			{{error}}
+		</div>
+		{% endif %}
+		{% if faculty_details %}
+		<h3 style="text-align: center;margin-top: 25px;margin-bottom:-10px">Assign Faculty</h3>
+		<div class="table-responsive">
+			<table class="table table-striped bg-white ">
+				<thead>
+					<tr>
+						<th scope="col">S.No</th>
+						<th scope="col">Id number</th>
+						<th scope="col">username</th>
+						<th>Branch</th>
+                        <th>Subject</th>
+						<th scope="col">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for faculty in faculty_details %}
+					<tr>
+						<form action="" method="POST">
+							{% csrf_token %}
+							<th scope="row">{{ forloop.counter }}.</th>
+							<td>{{faculty.id}}</td>
+							<td>{{faculty.username}}</td>
+                            <td>{{faculty.branch}}</td>
+                            <td>
+								<select class="form-control" name="subject" aria-label="Default select example" required>
+									<option selected value="">select menu</option>
+									{% for subject in faculty.subjects %}
+										<option value="{{subject}}">{{subject}}</option>
+									{% endfor %}
+								</select>
+							</td>
+							<td><button type="submit" name="assignid" value="{{faculty.id}}"
+									class="btn btn-primary">Assign</button></td>
+						</form>
+					</tr>
+					{% endfor %}
+					
+				</tbody>
+			</table>
+		</div>
+		{% else %}
+
+		<div class="jumbotron" style="width: 100%;padding: 25px;">
+			<p class="lead">No new approvers were registered</p>
+		</div>
+		{% endif %}
+	
+	</div>
+</div>
+{% endblock %}

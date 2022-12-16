@@ -1,0 +1,97 @@
+{% extends "fct_base.html" %}
+{% load static %}
+{% block title %}
+Add Student Scores
+{% endblock %}
+{% block extra_style %}
+<link rel="stylesheet" href="{% static 'css/add_scores.css'%}">
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+{% endblock %}
+{% block content %}
+<section>
+    <div>
+        {% if message %}
+        <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {{message}}
+        </div>
+        {% endif %}
+        {% if error %}
+        <div class="alert alert-danger alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {{error}}
+        </div>
+        {% endif %}
+    </div>
+    <div class="container">
+        <form id="myform" action="" method="post">
+            {% csrf_token %}
+            <div class="topnameinput">
+                <div class="form-group row">
+                    <label class="col-lg-3 col-sm-12"><b>Exam Name: </b></label>
+                    <input type="text" class="form-control col-lg-5 col-sm-12" name="examname" required>
+                </div>
+            </div>
+            <br>
+            <div>
+                <div class="table-responsive">
+                    <table class="table table-striped bg-white ">
+                        <thead>
+                            <tr>
+                                <th>Id number</th>
+                                <th>username</th>
+                                <th>Grade</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for student in students %}
+                            <tr>
+                                <td>
+                                    <input type="text" class="form-control" name="id" value="{{student.id}}" disabled>
+                                </td>
+                                <td>{{student.username}}</td>
+                                <td>
+                                    <select class="form-control" name="grade" aria-label="Default select example" required>
+                                        <option selected value="">select menu</option>
+                                        <option value="A+">A+</option>
+                                        <option value="A">A</option>
+                                        <option value="B+">B+</option>
+                                        <option value="B">B</option>
+                                        <option value="C+">C+</option>
+                                        <option value="C">C</option>
+                                        <option value="D">D</option>
+                                        <option value="F">Fail</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="number" class="form-control" name="score">
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+                <div style="text-align: center;">
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+
+<script>
+
+    $(document).ready(function(){
+    
+        $('#myform').submit(function(){
+            $("#myform :disabled").removeAttr('disabled');
+        });
+    
+        
+    });
+</script>
+
+{% endblock %}

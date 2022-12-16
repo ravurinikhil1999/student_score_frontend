@@ -1,0 +1,89 @@
+{% extends "admin_base.html" %}
+{% load static %}
+{% block title %}
+Branch
+{% endblock %}
+{% block extra_style %}
+<link rel="stylesheet" href="{% static 'css/addbranch.css'%}">
+{% endblock %}
+{% block content %}
+<div>
+    <div class="container">
+        {% if error %}
+			<div class="alert alert-danger" role="alert">
+				{{error}}
+			</div>
+		{% endif %}
+        <div class="topaddbranchbutton">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addbranch"><i class="fa fa-plus" aria-hidden="true"></i> Add Branch</button>
+        </div>
+        <br>
+        {% if branches %}
+        <div class="accordion" id="accordionExample">
+            {% for branch in branches %}
+            <div class="item">
+                <div class="item-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#{{branch.name}}" aria-expanded="false" >
+                            {{branch.name}}
+                            <i class="fa fa-angle-down"></i>
+                        </button>
+                    </h2>
+                </div>
+                <div id="{{branch.name}}" class="collapse show" aria-labelledby="headingOne"
+                    data-parent="#accordionExample">
+                    <div class="t-p">
+                        <div>
+                            <p style="text-align: center;">{{branch.name}}</p>
+                        </div>
+                        <div>
+                            <div><b>No. of Student: {{branch.student_count}}</b></div>
+                            <div><b>No. of Faculty: {{branch.faculty_count}}</b></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+
+        <div class="container">
+            <div class="jumbotron" style="width: 100%;margin-top: 50px">
+                <p class="lead"><b>No Branches has been added</b></p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+
+
+
+    <div class="modal fade" id="addbranch" tabindex="-1" role="dialog" aria-labelledby="addbranchLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" action="" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addbranchLabel">Add Branch</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label>Enter Branch Name</label>
+                            <input type="text" name="branch" class="form-control" placeholder="Branch Name">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Branch</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {% endblock %}
